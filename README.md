@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 麦当 OS · 个人智能
 
-## Getting Started
+> 看见、记住、找回来
 
-First, run the development server:
+麦当 OS 是一个 AI 产品捕获与记录工具。截图丢进来，自动识别产品名称、分类、功能点和标签，加上你自己的判断，沉淀成可搜索的个人知识库。
+
+---
+
+## 核心功能
+
+- **截图捕获** — 粘贴或上传任意 AI 产品截图，一键触发识别
+- **AI 自动解析** — 基于 Agnes 2.0 Flash 模型，流式返回产品名、分类、功能列表、标签和一句话摘要
+- **个人判断** — 在每条记录上写下自己的观点，AI 会据此更新分类和标签
+- **卡片墙 + 时间线** — 首页双栏布局，左侧浏览全部记录，右侧快速回顾最近判断
+- **键盘快捷键** — 全局快捷键导航，减少鼠标操作
+- **本地持久化** — 数据存在浏览器 localStorage，无需账号，隐私优先
+
+---
+
+## 技术栈
+
+| 层 | 选型 |
+|---|---|
+| 框架 | Next.js 16 + React 19 |
+| 语言 | TypeScript |
+| 样式 | Tailwind CSS v4 |
+| 组件 | shadcn/ui + Base UI |
+| 状态 | Zustand (persist) |
+| AI | Agnes 2.0 Flash (streaming) |
+
+---
+
+## 本地运行
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+配置环境变量：
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# .env.local
+AGNES_BASE_URL=https://your-agnes-endpoint
+AGNES_API_KEY=your-api-key
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+启动开发服务器：
 
-## Learn More
+```bash
+pnpm dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+打开 [http://localhost:3000](http://localhost:3000)。
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 页面结构
 
-## Deploy on Vercel
+```
+/           首页卡片墙 + 最近判断时间线
+/capture    新建捕获，粘贴截图触发 AI 识别
+/search     全文搜索记录
+/records/[id]  单条记录详情 + 编辑判断
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 作者
+
+麦当 mdldm · 个人 OS
